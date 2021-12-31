@@ -1,3 +1,5 @@
+Auth: https://github.com/share/sharedb/issues/169
+
 # Simple realtime client/server sync with ShareDB
 
 ![Demo](demo.gif)

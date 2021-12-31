@@ -38,6 +38,21 @@ backend.use("commit", (context, next) => {
     next("Resulting state doesn't conform to schema");
   }
 });
+
+// Gets the current session from a WebSocket connection.
+// Draws from http://stackoverflow.com/questions/36842159/node-js-ws-and-express-session-how-to-get-session-object-from-ws-upgradereq
+const getSession = (req) => {
+  const headers = req.headers;
+
+  // If there's no cookie, there's no session, so do nothing.
+  if (!headers.cookie) {
+    return;
+  }
+
+  // If there's a cookie, get the session id from it.
+  console.log(headers.cookie);
+};
+
 startServer();
 
 function startServer() {
@@ -47,8 +62,11 @@ function startServer() {
 
   // Connect any incoming WebSocket connection to ShareDB
   var wss = new WebSocket.Server({ server: server });
-  wss.on("connection", (ws) => {
+  wss.on("connection", (ws, request) => {
     console.log("Websocket connected");
+
+    getSession(request);
+
     var stream = new WebSocketJSONStream(ws);
     backend.listen(stream);
     ws.on("close", () => {
