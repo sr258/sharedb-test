@@ -16,7 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
+    "ajv": "^8.8.2",
     "express": "^4.17.2",
+    "fs-extra": "^10.0.0",
     "reconnecting-websocket": "^4.4.0",
     "sharedb": "^2.2.1",
     "ws": "^8.4.0"
